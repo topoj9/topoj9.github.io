@@ -54,6 +54,7 @@ button4.onclick = function() {
     na += Math.round(count/100);
     count = 0;
     upgrade = 1;
+    upgradePrice = 20;
     updateDisplays();
 }
 button5.onclick = function() {
