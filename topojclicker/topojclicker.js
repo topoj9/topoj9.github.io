@@ -26,7 +26,7 @@ function automation() {
 const intervalId = setInterval(automation, 1000);
 
 button.onclick = function() {
-    count += upgrade * 100;
+    count += upgrade;
     updateDisplays();
 }
 button2.onclick = function() {
