@@ -1,12 +1,40 @@
 body {
     background-color: #BADA55;
-    font-family: Arial, Helvetica, sans-serif;
+  
+    font-family: cursive;
     color: #000000;
     text-align: center;
 }
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
+
+h3 {
+    
 }
 p {
-    font-family: Arial, Helvetica, sans-serif;
+    
 }
+
+.container {
+    display: flex;
+    background-color: forestgreen;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    width: 250px;
+
+    
+}
+button {
+
+    background-color: gray;
+    
+    font-family: cursive;
+    margin: 10px;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+.numberInput {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+  

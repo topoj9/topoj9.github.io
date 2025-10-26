@@ -6,34 +6,55 @@
         </head>
 
         <body>
-                <h1> topoj clicker</h1>
-        <button id="clicker">+1 topoj social credit</button>
+        <h1> topoj clicker</h1>
+        <div class="container">
+                <h2 id="clickerdisplay">0</h3>
+                <p>gives you topoj points</p>
+                <button id="clicker">+1 topoj social credit</button>
+        </div>
         <br>
-        <h3 id="clickerdisplay">0</h3>
+        <div class="container">
+                <h2 id="clicker2display">topoj1</h3>
+                <p>Gives you additional social credit per click</p>
+                <button id="clicker2">+1 topoj level<br>20</button>
+        </div>  
         <br>
-        <p>Gives you additional social credit per click</p>
+        <img src="images/absolute.jpg" id="absolutetopoj9" alt="absolute topoj" width="300" height="400" hidden="true">
         <br>
-        <button id="clicker2">+1 topoj level<br>20</button>
+        <div class="container">
+                <h2 id="poptartdisplay">0 popping tarts</h3>
+                <p>Automatically gives you some every second</p>
+                <button id="poppingtart">buy a popping tart<br>100</button>
+        </div> 
         <br>
-        <h3 id="clicker2display">topoj1</h3>
+        <div class="container">
+                <h2 id="clicker3display">NA: 0</h3>
+                <p>Doing a han? resets your social credit and upgrade, and gives you NA</p>
+                <button id="han">do a han?<br>(min 1000)<br></button>
+        </div> 
         <br>
-        <p>Automatically gives you some every second</p>
+        <div class="container">
+                <p>Buying a bung multiplies your current upgrade level by 1.5</p>
+                <button id="bung">buy a bung<br>10NA</button>
+        </div> 
         <br>
-        <button id="poppingtart">buy a popping tart<br>100</button>
+        <div class="container">
+                <h2 id="gurtDisplay">Gurt: 0</h2>
+                <p>Gurts randomly change price over time. You can invest in it for money</p>
+                <h3 id="gurtprice">GURT PRICE: 0</h3>
+                <canvas id="gurtCanvas" width="225px" height="200px"></canvas>
+                <h4>amount of gurt to buy or sell</h4>
+                <input type="number" class="numberInput" id="gurtAmount">
+                <button id="buyGurt">Buy<br>0</button>
+                <button id="sellGurt">Sell<br>0</button>
+        </div> 
+
         <br>
-        <p>Doing a han? resets your social credit and upgrade, and gives you NA</p>
-        <br>
-        <button id="han">do a han?<br>(min 1000)<br></button>
-        <br>
-        <h3 id="clicker3display">NA: 0</h3>
-        <br>
-        <p>Buying a bung multiplies your current upgrade level by 1.5</p>
-        <br>
-        <button id="bung">buy a bung<br>10NA</button>
+
         
         
 
-        <img src="images/absolute.jpg" id="absolutetopoj9" alt="absolute topoj" width="300" height="400" hidden="true">
+        
 
         <script src="topojclicker.js"></script>
         </body>
