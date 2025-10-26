@@ -37,7 +37,7 @@ var upgradePrice = 20;
 var poppingtartCost = 100;
 var bungCost = 10;
 var bungs = 0;
-var poppedHams = 100;
+var poppedHams = 0;
 
 var fentActive = false;
 var fentTimer = 0;
