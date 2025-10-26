@@ -5,6 +5,8 @@ const button4 = document.getElementById('han');
 const button5 = document.getElementById('bung');
 const buyGurt = document.getElementById("buyGurt");
 const sellGurt = document.getElementById("sellGurt");
+const popHams = document.getElementById('pophams');
+const fent = document.getElementById('fent');
 
 const display = document.getElementById('clickerdisplay');
 const display2 = document.getElementById('clicker2display');
@@ -12,6 +14,15 @@ const display3 = document.getElementById('clicker3display');
 const gurtPriceDisplay = document.getElementById('gurtprice');
 const popdisp = document.getElementById('poptartdisplay');
 const gurtDisplay = document.getElementById("gurtDisplay");
+const bungDisplay = document.getElementById('bungs');
+const pophamDisplay = document.getElementById('pophamdisplay');
+
+var allDisplays = document.getElementsByTagName("h2");
+var allDisplayText = [];
+var allPs = document.getElementsByTagName("p");
+var allPText = [];
+var allButtons = document.getElementsByTagName("button");
+var allButtonText = [];
 
 const gurtAmount = document.getElementById("gurtAmount");
 const canvas = document.getElementById("gurtCanvas");
@@ -25,22 +36,54 @@ var gurts = 0;
 var upgradePrice = 20;
 var poppingtartCost = 100;
 var bungCost = 10;
+var bungs = 0;
+var poppedHams = 100;
+
+var fentActive = false;
+var fentTimer = 0;
 
 var automationLevel = 0;
 function automation() {
-    count += automationLevel*upgrade;
+    count += automationLevel*getMulti(true);
+
+    if (fentActive) {
+        fentTimer += 1;
+        if (fentTimer > 20) {
+            fentActive = false;
+            for (let i = 0; i < allPs.length; i++) {
+                allPs[i].innerText = allPText[i];
+            }
+            for (let i = 0; i < allButtons.length; i++) {
+                allButtons[i].innerText = allButtonText[i];
+            }
+            for (let i = 0; i < allDisplays.length; i++) {
+                allDisplays[i].innerText = allDisplayText[i];
+            }
+        }
+    }
+
     updateDisplays();
 }
 function updateGurts() {
     advanceMarket(1);
     updateDisplays();
 }
+function getMulti(isTart) {
+    let multi = upgrade;
+    if (!isTart) {
+        multi *= Math.pow(1.5, bungs);
+    }
+    if (fentActive) {
+        multi *= 5;
+    }
+    return Math.round(multi);
+}
 
 const intervalId = setInterval(automation, 1000);
 const intervalId2 = setInterval(updateGurts, 5000);
 
 button.onclick = function() {
-    count += upgrade;
+    count += getMulti(false);
     updateDisplays();
 }
 button2.onclick = function() {
@@ -65,7 +108,11 @@ button4.onclick = function() {
     if (count < 1000) {
         return;
     }
-    na += Math.round(count/100);
+    let amtNA = count/100;
+    if (fentActive) {
+        amtNA *= 5;
+    }
+    na += Math.round(amtNA);
     count = 0;
     upgrade = 1;
     upgradePrice = 20;
@@ -77,7 +124,9 @@ button5.onclick = function() {
     }
     na -= bungCost;
     bungCost = Math.round(bungCost * 4);
-    upgrade = Math.round(upgrade * 1.5);
+    //upgrade = Math.round(upgrade * 1.5);
+    bungs += 1;
+    updateDisplays();
 
 }
 buyGurt.onclick = function() {
@@ -100,6 +149,40 @@ sellGurt.onclick = function() {
     }
     count += totalPrice;
     gurts -= amt;
+    updateDisplays();
+}
+popHams.onclick = function() {
+    if (na < 10) {
+        return;
+    }
+    var maxVal = Math.ceil(na/10);
+    if (fentActive) {
+        maxVal *= 5;
+    }
+    poppedHams += Math.round(Math.random()*maxVal);
+    
+    bungs = 0;
+    na = 0;
+    updateDisplays();
+}
+fent.onclick = function() {
+    if (poppedHams < 2 || fentActive) {
+        return;
+    }
+    poppedHams -= 2;
+    fentActive = true;
+    fentTimer = 0;
+
+    for (let i = 0; i < allPs.length; i++) {
+        allPText[i] = allPs[i].innerText;
+    }
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtonText[i] = allButtons[i].innerText;
+    }
+    for (let i = 0; i < allDisplays.length; i++) {
+        allDisplayText[i] = allDisplays[i].innerText;
+    }
+
     updateDisplays();
 }
 gurtAmount.onchange = function() {
@@ -156,21 +239,24 @@ function draw() {
   window.onload = draw;
 
 function updateDisplays() {
+    if (!fentActive) {
     display.innerText = count + "";
     display2.innerText = "topoj" + upgrade;
     display3.innerText = "NA: " + na
     popdisp.innerText = automationLevel + " popping tarts"
     gurtDisplay.innerText = "Gurt: " + gurts;
+    pophamDisplay.innerText = "Popped hams: " + poppedHams;
 
     var gurtCost = currentGurtCost();
 
-    button.innerText = "+" + upgrade + " topoj social credit"
+    button.innerText = "+" + getMulti(false) + " topoj social credit"
     button2.innerText = "+" + "1" + " topoj level\n" + upgradePrice;
     button3.innerText = "buy a popping tart\n" + poppingtartCost;
     button5.innerText = "buy a bung\n" + bungCost + "NA";
     buyGurt.innerText = "Buy\n" + Math.ceil(currentGurtCost()*gurtAmount.value);
     sellGurt.innerText = "Sell\n" + Math.ceil(currentGurtCost()*gurtAmount.value);
 
+    bungDisplay.innerText = "Bungs: " + bungs;
     gurtPriceDisplay.innerText = "GURT PRICE: " + Math.ceil(gurtCost);
 
     if (count >= 1000) {
@@ -178,10 +264,35 @@ function updateDisplays() {
     } else {
         button4.innerText = "do a han?\n(min 1000)\n";
     }
+    } else {
+        randomizeText();
+    }
 
     if (upgrade == 9) {
         absolute.hidden = false;
     } else {
         absolute.hidden = true;
+    }
+}
+let chars = "qwertyuiop[]|asdfghjkl;':}{?/.>,<mnbvcxzQWERTYUIOPASDFGHJKLZXCVBNM   ";
+function randomText(amt) {
+    
+    var newString = "";
+    for (let i = 0; i < amt; i++) {
+        var charIndex = Math.round(Math.random()*(chars.length-1));
+        newString = newString + chars.charAt(charIndex);
+    }
+    return newString;
+
+}
+function randomizeText() {
+    for (let i = 0; i < allDisplays.length; i++) {
+        allDisplays[i].innerText = randomText(10);
+    }
+    for (let i = 0; i < allPs.length; i++) {
+        allPs[i].innerText = randomText(50);
+    }
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].innerText = randomText(15);
     }
 }

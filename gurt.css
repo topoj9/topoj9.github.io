@@ -13,6 +13,7 @@ p {
     
 }
 
+
 .container {
     display: flex;
     background-color: forestgreen;
@@ -23,6 +24,15 @@ p {
     width: 250px;
 
     
+}
+.alley {
+    display: flex;
+    background-color: #676767;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    width: 250px;
 }
 button {
 
