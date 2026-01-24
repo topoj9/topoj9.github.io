@@ -1,7 +1,7 @@
 body {
     background-color: #BADA55;
   
-    font-family: cursive;
+    font-family: 'comicsans', sans-serif;
     color: #000000;
     text-align: center;
 }
@@ -47,4 +47,11 @@ button {
     margin-left: 25px;
     margin-right: 25px;
 }
-  
+
+
+@font-face {
+  font-family: 'comicsans';
+  src: url('fonts/comicsans.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}

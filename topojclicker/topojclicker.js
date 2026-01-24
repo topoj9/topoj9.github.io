@@ -243,21 +243,21 @@ function updateDisplays() {
     display.innerText = count + "";
     display2.innerText = "topoj" + upgrade;
     display3.innerText = "NA: " + na
-    popdisp.innerText = automationLevel + " popping tarts"
-    gurtDisplay.innerText = "Gurt: " + gurts;
+    popdisp.innerText = automationLevel + " crits"
+    gurtDisplay.innerText = "Knobs: " + gurts;
     pophamDisplay.innerText = "Popped hams: " + poppedHams;
 
     var gurtCost = currentGurtCost();
 
     button.innerText = "+" + getMulti(false) + " topoj social credit"
     button2.innerText = "+" + "1" + " topoj level\n" + upgradePrice;
-    button3.innerText = "buy a popping tart\n" + poppingtartCost;
+    button3.innerText = "buy a crit\n" + poppingtartCost;
     button5.innerText = "buy a bung\n" + bungCost + "NA";
     buyGurt.innerText = "Buy\n" + Math.ceil(currentGurtCost()*gurtAmount.value);
     sellGurt.innerText = "Sell\n" + Math.ceil(currentGurtCost()*gurtAmount.value);
 
     bungDisplay.innerText = "Bungs: " + bungs;
-    gurtPriceDisplay.innerText = "GURT PRICE: " + Math.ceil(gurtCost);
+    gurtPriceDisplay.innerText = "KNOB PRICE: " + Math.ceil(gurtCost);
 
     if (count >= 1000) {
         button4.innerText = "do a han?\n(min 1000)\nyou will earn " + Math.round(count/100) + " NA";
