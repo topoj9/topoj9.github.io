@@ -245,7 +245,7 @@ function updateDisplays() {
     display3.innerText = "NA: " + na
     popdisp.innerText = automationLevel + " crits"
     gurtDisplay.innerText = "Knobs: " + gurts;
-    pophamDisplay.innerText = "Popped hams: " + poppedHams;
+    pophamDisplay.innerText = "Juiced oranges: " + poppedHams;
 
     var gurtCost = currentGurtCost();
 

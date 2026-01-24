@@ -25,6 +25,18 @@ p {
 
     
 }
+.mydisplay {
+    display: flex;
+    background-color: forestgreen;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    width: 500px;
+    margin-top: 25px;
+
+    
+}
 .alley {
     display: flex;
     background-color: #676767;
